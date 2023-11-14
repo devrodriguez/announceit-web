@@ -1,0 +1,45 @@
+.carousel-item img {
+  max-height: 200px;
+  float: left;
+}
+
+.card-store-container {
+  max-height: 176px;
+  margin-bottom: 15px;
+}
+
+.card-store-right {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-right: 15px;
+}
+
+.card-store-right p {
+  font-size: 12px;
+  text-justify: auto;
+}
+
+.card-store-right-bottom {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-top: solid 1px #ddd;
+}
+
+.card-store-right-bottom * {
+  vertical-align: middle;
+}
+
+.card-store-right-bottom a.btn {
+  border-radius: 50px;
+}
+
+.card-store-right-bottom fa-icon {
+  padding-right: 15px;
+}
+
+.card-store-right h4 small {
+  color: #aaa;
+  display: block;
+  font-size: 15px;
+}

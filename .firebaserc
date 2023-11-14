@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "announceit-starq"
+  },
+  "targets": {
+    "announceit-starq": {
+      "hosting": {
+        "announceit-web": [
+          "announceit-starq"
+        ]
+      }
+    }
+  }
+}

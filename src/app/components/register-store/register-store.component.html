@@ -1,0 +1,35 @@
+<form #frmRegister="ngForm" action="" (ngSubmit)="register()">
+  <div class="form-group">
+    <label for="businessName">Negocio</label>
+    <input type="text" name="businessName" id="businessName" class="form-control" [(ngModel)]="storeData.name" required>
+    <small>Nombre de tu negocio o proyecto</small>
+  </div>
+  <div class="form-group">
+    <label for="businessName">Direccion</label>
+    <input type="text" name="address" id="address" class="form-control" 
+    [(ngModel)]="storeData.address"
+    [class.is-invalid]="searchFailed"
+    [ngbTypeahead]="search"
+    required>
+    <small>Cl. 1 #1-1, Bogota</small>
+    <small *ngIf="searching" class="form-text text-muted">searching...</small>
+  </div>
+  <div class="form-group">
+    <label for="businessName">Telefono</label>
+    <input type="text" name="phone" id="phone" class="form-control" [(ngModel)]="storeData.phoneNumber" required>
+    <small>Telefono de tu negocio o domicilio</small>
+  </div>
+  <div class="form-group">
+    <label for="businessName">Tipo de comercio</label>
+    <select name="category" id="category" class="form-control" (change)="selectCategory($event)" required>
+      <option value="{{category|json}}" *ngFor="let category of categories">{{category.name}}</option>
+    </select>
+    <small>Selecciona la categoria de tu negocio o proyecto</small>
+  </div>
+  <div class="form-group">
+    <label for="files">Images</label>
+    <input #imageInput type="file" name="images" id="images" class="form-control" (change)="processFile(imageInput)" required>
+    <small>Formatos validos .png .jpeg</small>
+  </div>
+  <button type="submit" class="btn btn-success" [disabled]="!frmRegister.valid">Publicar</button>
+</form>

@@ -1,0 +1,51 @@
+<section>
+  <div class="alert alert-info" *ngIf="stores.length == 0">
+    <fa-icon [icon]="faInfoCircle"></fa-icon>&nbsp;No hay comercios relacionados a la busqueda.
+  </div>
+  <div class="row card-store-container">
+    <div class="col-md-6" *ngFor="let store of stores">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-5">
+            <div id="carouselExample" class="carousel slide">
+              <div class="carousel-inner">
+                <div class="carousel-item active" *ngFor="let image of store.urlImages">
+                  <img [src]="image" class="d-block w-100" alt="">
+                </div>
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button 
+                class="carousel-control-next"
+                type="button" 
+                data-bs-target="#carouselExample"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-md-7">
+            <div class="card-store-right" (click)="onClickRightCard(store)">
+              <h4>{{store.name}}<small>{{store.category.name}}</small><small>{{store.address}}</small></h4>
+              <p class="text-truncate">{{store.description}}</p>
+              <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                <a [href]="'https://wa.me/'+store.phoneNumber" target="_blank"
+                  class="btn btn-outline-success btn-md me-md-2 rounded-circle">
+                  <i class="bi bi-whatsapp"></i>
+                </a>
+                <a [href]="'mailto:'+store.email" target="_blank" rel="noopener noreferrer"
+                  class="btn btn-outline-primary btn-md rounded-circle" *ngIf="store.email">
+                  <i class="bi bi-envelope-at"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

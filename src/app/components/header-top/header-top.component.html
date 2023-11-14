@@ -1,0 +1,85 @@
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light-silver">
+  <!-- Container wrapper -->
+  <div class="container">
+    <!-- Navbar brand -->
+    <a class="navbar-brand me-2" href="https://mdbgo.com/">
+      <img
+        src="assets/img/logo.png"
+        height="16"
+        alt="MDB Logo"
+        loading="lazy"
+        style="margin-top: -1px;"
+      />
+    </a>
+
+    <!-- Toggle button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-mdb-toggle="collapse"
+      data-mdb-target="#navbarButtonsExample"
+      aria-controls="navbarButtonsExample"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+      (click)="toggleNavbar()"
+    >
+      <i class="fas fa-bars"></i>
+    </button>
+
+    <!-- Collapsible wrapper -->
+    <div class="collapse navbar-collapse" id="navbarButtonsExample">
+      <!-- Left links -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Dashboard</a>
+        </li>
+      </ul>
+      <!-- Left links -->
+      <div class="d-flex align-items-center">
+        <button type="button" class="btn btn-outline-success px-3 me-2 btn-soft" *ngIf="!loggedIn" type="button" (click)="openModal(mdLogin)">
+          <fa-icon [icon]="faUser"></fa-icon>
+          Ingresar
+        </button>
+        <button type="button" class="btn btn-outline-danger px-3 me-2 btn-soft" (click)="openPublicar(mdLogin, mdRegister)">
+          <fa-icon [icon]="faPlusCircle"></fa-icon>
+          Publicar
+        </button>
+        <button class="btn btn-outline-warning px-3 me-2 btn-soft" *ngIf="loggedIn" type="button" (click)="signOut()">
+          <fa-icon [icon]="faUser"></fa-icon>
+          Logout
+        </button>
+        <span *ngIf="loggedIn" class="ml-2 login-cont">
+          <img [src]="user.photoUrl" class="rounded-circle" style="height: 20px;" alt="">
+          <small class="ml-2">{{user.name}}</small>
+        </span>
+      </div>
+    </div>
+    <!-- Collapsible wrapper -->
+  </div>
+  <!-- Container wrapper -->
+   <!-- Login Modal -->
+   <ng-template #mdLogin let-modal>
+    <div class="modal-body">
+      <app-auth (loggedInEvt)="customerLogged($event)" (doRegisterEvt)="openModal(mdRegCustomer)"></app-auth>
+    </div>
+  </ng-template>
+  <!-- Register Customer -->
+  <ng-template #mdRegCustomer let-modal>
+    <div class="modal-body">
+      <app-register-customer (registeredInEvt)="customerRegistered($event)"></app-register-customer>
+    </div>
+  </ng-template>
+  <!-- Register Modal -->
+  <ng-template #mdRegister let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-register-store></app-register-store>
+    </div>
+  </ng-template>
+</nav>

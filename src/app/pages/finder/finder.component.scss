@@ -1,0 +1,42 @@
+.big-input {
+    display: inline-block;
+    font-size: 1.7rem;
+    border-radius: 50px;
+    padding-left: 30px;
+    padding-right: 60px;
+    width: calc(100% - 120px);
+}
+
+.big-select {
+    display: inline-block;
+    font-size: 1.6rem;
+    border-radius: 50px;
+    text-align: center;
+    width: 100px;
+}
+
+.input-search-icon {
+    color: #aaa;
+    font-size: 1.5rem;
+    position: absolute;
+    top: .8rem;
+    right: 8.5rem;
+}
+
+.category-section {
+    margin-top: 25px;
+}
+
+@media (min-width: 768px) {
+    .big-input {
+        width: calc(100% - 140px);
+    }
+
+    .big-select {
+        width: 140px;
+    }
+
+    .input-search-icon {
+        right: 9.5rem;
+    }
+}

@@ -1,0 +1,14 @@
+<section>
+  <div class="row">
+    <div class="col-4 col-sm-3 col-md-2" *ngFor="let category of categories">
+      <div [ngClass]="['card card-head-category cursor-pointer']" (click)="selectCategory($event, category)">
+        <div class="card-body text-center">
+          <span>
+            <i [ngClass]="['bi', category.icon]"></i>
+          </span>
+          <small>{{category.name}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

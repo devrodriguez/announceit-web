@@ -1,0 +1,25 @@
+<form #frmRegCus="ngForm" (ngSubmit)="register(frmRegCus)">
+    <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" name="name" id="name" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" id="password" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+        <label for="phoneNumber">Telefono</label>
+        <input type="text" name="phoneNumber" id="phoneNumber" class="form-control" ngModel>        
+    </div>
+    <button type="submit" class="btn btn-success btn-block" *ngIf="!embedded">Registrar</button>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <a href="#">Iniciar Sesion</a>
+        </div>
+    </div>
+</form>

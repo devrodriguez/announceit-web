@@ -1,0 +1,35 @@
+<div class="jumbotron jumbotron-fluid">
+    <div class="container mt-5">
+      <div style="text-align: center;">
+        <img src="assets/img/logo.png" class="img-fluid" alt="">
+      </div>
+      <p class="lead text-center">Siempre cerca de ti</p>
+      <hr class="my-2">
+      <div class="form-group" style="position: relative">
+        <input 
+        type="text" 
+        class="form-control big-input" 
+        placeholder="Busca lo que necesites..." 
+        [(ngModel)]="query" 
+        (keydown)="findByInput($event, storeItems)">
+        <fa-icon [icon]="faSearch" class="input-search-icon"></fa-icon>
+        <select name="km" id="km" class="form-control big-select" [(ngModel)]="kmDist">
+          <option value="1">1 Km</option>
+          <option value="5">5 Km</option>
+          <option value="10">10 Km</option>
+          <option value="20">20 Km</option>
+        </select>
+      </div>
+      <section class="category-section">
+        <app-category-items (selectCategoryEvt)="selectCategory($event)"></app-category-items>
+      </section>
+    </div>
+  </div>
+  <div class="container mt-5">
+    <app-store-items #storeItems [stores]="stores" (touchEvent)="onTouchStoreCard($event)"></app-store-items>
+  </div>
+  <ng-template #mdStoreLobby let-modal>
+    <div class="modal-body">
+      <app-store-lobby></app-store-lobby>
+    </div>
+  </ng-template>

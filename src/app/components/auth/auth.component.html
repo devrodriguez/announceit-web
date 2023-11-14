@@ -1,0 +1,51 @@
+<div>
+    <div class="row mb-2">
+        <div class="col-sm-6">
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-danger" (click)="signInGoogle()">
+                    <fa-icon [icon]="faGoogle"></fa-icon>
+                    Google
+                </button>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="d-grid gap-2">
+                <button type="button" class="btn btn-outline-primary" (click)="signInFacebook()">
+                    <fa-icon [icon]="faFacebook"></fa-icon>
+                    Facebook
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    <hr>
+    <section>
+        <form #frmLogin="ngForm">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input name="email" id="email" type="text" class="form-control" ngModel>
+            </div>
+            <div class="form-group">
+                <label for="">Contraseña</label>
+                <input name="password" id="password" type="password" class="form-control" ngModel>
+            </div>
+        </form>
+    </section>
+    <div class="row mt-2">
+        <div class="col">
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button class="btn btn-outline-success" (click)="signInLocal(frmLogin)">
+                    <fa-icon [icon]="faSignInAlt"></fa-icon>
+                    Ingresar
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col text-center">
+            <a href="#" (click)="doRegister()">Crear cuenta</a>
+        </div>
+    </div>
+</div>

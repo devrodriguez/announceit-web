@@ -1,0 +1,63 @@
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import "~bootstrap-icons/font/bootstrap-icons.css";
+
+$mq-mobile-portrait		: 320px !default;
+$mq-mobile-landscape	: 480px !default;
+$mq-tablet-portrait		: 768px !default;
+$mq-tablet-landscape	: 1024px !default;
+$mq-desktop				: 1382px !default;
+
+@media (min-width: 320px) {
+    .card-store {
+        width: 350px;
+        margin: auto;
+    }
+}
+
+
+input[type="text"]::-webkit-input-placeholder {
+    color: #d5d7d9
+}
+
+.card-selected {
+    opacity: 1
+}
+
+.card-store {
+    border: none;
+    border-radius: 30px;
+    box-shadow: 3px 3px 3px #aaa;
+    opacity: .7;
+    position: relative;
+    text-align: center;
+    margin-bottom: 30px;
+    height: 150px;
+}
+
+.card-store span {
+    font-size: 40px;
+    color: #eee;
+    display: block;
+}
+
+.card-store:hover {
+    opacity: .9;
+}
+
+.card-store .card-body {
+    border-radius: 30px;
+    overflow: hidden;
+    padding: 0;
+}
+
+.card-store small {
+    display: block;
+}
+
+.btn-soft {
+    opacity: .65;
+}
+
+.btn-link {
+    color: #9552df
+}

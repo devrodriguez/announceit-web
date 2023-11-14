@@ -1,0 +1,30 @@
+.card-head-category {
+    border-radius: 50px;
+    box-shadow: 3px 3px 3px #aaa;
+    text-align: center;
+    margin-bottom: 30px;
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+.card-head-category:hover {
+    box-shadow: 2px 2px 2px #aaa;
+    opacity: .95;
+}
+
+.card-head-category span {
+    font-size: 22px;
+    color: #000000;
+    display: block;
+}
+
+.card-head-category small {
+    color: #000000;
+    font-size: 11px;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
