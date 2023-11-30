@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter} from '@angular/core';
 import { faGoogle, faFacebook } from '@fortawesome/free-brands-svg-icons';
-import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
+import { faL, faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import { GoogleLoginProvider, SocialUser, FacebookLoginProvider } from '@abacritt/angularx-social-login';
 import { NgForm } from '@angular/forms';
 
 import { AuthService as LocalAuthService } from '../../services/auth.service';
 import { Customer } from 'src/app/interfaces/customer';
+import { timeInterval } from 'rxjs';
+import { FirebaseError } from '@angular/fire/app';
 
 @Component({
   selector: 'app-auth',
@@ -21,9 +23,12 @@ export class AuthComponent implements OnInit {
   faFacebook = faFacebook;
   faSignInAlt = faSignInAlt;
 
+  isAlert: Boolean = false
+  alertMessage: string = ''
+
   customer: Customer = {} as Customer;
 
-  constructor(private authLocService: LocalAuthService) { }
+  constructor(private localAuthService: LocalAuthService) { }
 
   ngOnInit(): void {
   }
@@ -40,16 +45,18 @@ export class AuthComponent implements OnInit {
     this.registerCustComponent.register(this.registerCustComponent.frmRegCus);
   }
 
-  signInLocal(form: NgForm) {
+  async signInLocal(form: NgForm) {
     this.customer.email = form.control.value.email;
     this.customer.password = form.control.value.password;
 
-    this.authLocService.signIn(this.customer).subscribe(res => {
-      this.authLocService.authState.next(res.data);
+    try {
+      const credentials = await this.localAuthService.signIn(this.customer)
+      this.localAuthService.authState.next(credentials.user);
       this.loggedInEvt.emit(true);
-    }, err => {
-      console.log(err);
-    });
+    } catch (error) {
+      console.error(error)
+      this.showAlert(true, 'Not valid auth')
+    }
   }
 
   consumerRegistered(res: any) {
@@ -59,5 +66,15 @@ export class AuthComponent implements OnInit {
 
   doRegister() {
     this.doRegisterEvt.emit();
+  }
+
+  showAlert(show: Boolean, message: string) {
+    this.isAlert = show
+    this.alertMessage = message
+
+    setTimeout(() => {
+      this.isAlert = false
+      this.alertMessage = ''
+    }, 2000)
   }
 }

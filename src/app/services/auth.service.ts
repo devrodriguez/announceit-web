@@ -1,21 +1,42 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Customer } from '../interfaces/customer';
+
+import { Auth, User, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from '@angular/fire/auth'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  auth: Auth = inject(Auth)
 
-  constructor() { }
+  authState = new BehaviorSubject<User | null>(null);
 
-  authState = new BehaviorSubject<Customer>({} as Customer);
+  constructor() {
+    onAuthStateChanged(this.auth, user => {
+      this.authState.next(user)
+      
+      if (user) {
+        console.warn('User has logged in');
+      } else {
+        console.warn('User has logged out');
+      }
+    })
+  }
 
-  signIn(customer: Customer): Observable<any> {
-    return of();
+  signIn(customer: Customer) {
+    return signInWithEmailAndPassword(this.auth, customer.email, customer.password)
   }
 
   signOut() {
-    sessionStorage.removeItem('sessionToken');
+    return signOut(this.auth)
+  }
+
+  isUserSignedIn() {
+    return this.auth.currentUser != null
+  }
+
+  getCurrentUser() {
+    return this.auth.currentUser
   }
 }

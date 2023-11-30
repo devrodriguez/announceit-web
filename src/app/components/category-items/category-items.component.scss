@@ -1,28 +1,34 @@
-.card-head-category {
+.category-item-container {
+    text-align: center;
+}
+
+.category-item-container small {
+    color: #000000;
+    font-size: 12px;
+}
+
+.category-item {
     border-radius: 50px;
     box-shadow: 3px 3px 3px #aaa;
     text-align: center;
+    vertical-align: middle;
     margin-bottom: 30px;
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     margin: auto;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
+    line-height: 80px;
 }
 
-.card-head-category:hover {
+.category-item:hover {
     box-shadow: 2px 2px 2px #aaa;
     opacity: .95;
 }
 
-.card-head-category span {
-    font-size: 22px;
+.category-item i {
+    font-size: 26px;
     color: #000000;
     display: block;
-}
-
-.card-head-category small {
-    color: #000000;
-    font-size: 11px;
 }
 
 .cursor-pointer {

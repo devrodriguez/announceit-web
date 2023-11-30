@@ -7,10 +7,9 @@ import {
 import { StoreService } from 'src/app/services/store.service';
 import { Store } from 'src/app/interfaces/store';
 import { StoreItemsComponent } from 'src/app/components/store-items/store-items.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { StoreLobbyComponent } from 'src/app/pages/store-lobby/store-lobby.component';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth.service';
+import { Category } from 'src/app/interfaces/category';
 
 @Component({
   selector: 'app-finder',
@@ -18,7 +17,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./finder.component.scss']
 })
 export class FinderComponent {
-  @ViewChild('mdStoreLobby') storeLobby!: StoreLobbyComponent;
 
   faSearch = faSearch;
   latitude: number = 0;
@@ -26,19 +24,13 @@ export class FinderComponent {
   query: string = "";
   kmDist: string = '1';
   stores: Store[] = [] as Store[];
+  categories: Category[] = [] as Category[]
+
   selStoreName: string = '';
 
   constructor(
     private router: Router,
-    private authService: AuthService, 
-    private storeService: StoreService,
-    private modalService: NgbModal) {
-    this.authService.authState.subscribe(res => {
-      console.log('Listening from app-component', res);
-    }, err => {
-      console.log(err);
-    });
-
+    private storeService: StoreService) {
     this.setCurrentGeolocation();
   }
 
@@ -53,28 +45,28 @@ export class FinderComponent {
     }
   }
 
-  findByInput(evt: any, storeItems: StoreItemsComponent) {
+  onSearchKeyDown(evt: any) {
     if (evt.key === 'Enter') {
-      storeItems.findStores(this.kmDist, this.latitude, this.longitude, this.query);
+      this.storeService
+        .getStores()
+        .subscribe({
+          next: (stores: Store[]) => {
+            this.stores = stores;
+          },
+          error: (err) => {
+            console.error(err)
+          }
+        })
     }
   }
 
-  findStores() {
-    this.storeService.findStore(this.kmDist, this.latitude, this.longitude, this.query)
-    .subscribe((stores: Store[]) => {
-      this.stores = stores ? stores : [];
-    }, err => {
-      console.error(err);
-    });
-  }
-
-  selectCategory(catName: string) {
-    this.storeService.findStore(this.kmDist, this.latitude, this.longitude, catName)
-    .subscribe((stores: Store[]) => {
-      this.stores = stores ? stores : [];
-    }, err => {
-      console.error(err);
-    });
+  selectCategory(category: string) {
+    this.storeService.getStoreByCategory(category)
+      .subscribe((stores: Store[]) => {
+        this.stores = stores;
+      }, err => {
+        console.error(err);
+      });
   }
 
   onTouchStoreCard(store: Store) {

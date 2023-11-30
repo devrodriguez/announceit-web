@@ -3,7 +3,7 @@
         <div class="col-sm-6">
             <div class="d-grid gap-2">
                 <button type="button" class="btn btn-outline-danger" (click)="signInGoogle()">
-                    <fa-icon [icon]="faGoogle"></fa-icon>
+                    <i class="bi bi-google"></i>
                     Google
                 </button>
             </div>
@@ -11,11 +11,10 @@
         <div class="col-sm-6">
             <div class="d-grid gap-2">
                 <button type="button" class="btn btn-outline-primary" (click)="signInFacebook()">
-                    <fa-icon [icon]="faFacebook"></fa-icon>
+                    <i class="bi bi-facebook"></i>
                     Facebook
                 </button>
-            </div>
-            
+            </div> 
         </div>
     </div>
     <hr>
@@ -29,6 +28,9 @@
                 <label for="">Contraseña</label>
                 <input name="password" id="password" type="password" class="form-control" ngModel>
             </div>
+            <div class="alert alert-danger" role="alert" *ngIf="isAlert">
+                {{alertMessage}}
+            </div>
         </form>
     </section>
     <div class="row mt-2">
@@ -39,7 +41,6 @@
                     Ingresar
                 </button>
             </div>
-            
         </div>
     </div>
     <hr>

@@ -4,7 +4,12 @@
 
 .login-cont {
   border: solid 1px #9552df;
-  padding: 3px 5px;
+  color: #9552df;
+  padding: 5px 15px;
   border-radius: 50px;
   vertical-align: middle;
+}
+
+.login-cont fa-icon {
+  margin-right: 8px;
 }

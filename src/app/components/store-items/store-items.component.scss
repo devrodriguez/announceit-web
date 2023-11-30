@@ -1,11 +1,16 @@
+.card-store-container {
+  height: 176px;
+  margin-bottom: 15px;
+}
+
+.card-store-container .card {
+  height: 176px;
+  overflow: hidden;
+}
+
 .carousel-item img {
   max-height: 200px;
   float: left;
-}
-
-.card-store-container {
-  max-height: 176px;
-  margin-bottom: 15px;
 }
 
 .card-store-right {
