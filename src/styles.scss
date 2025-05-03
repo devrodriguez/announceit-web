@@ -1,4 +1,4 @@
-@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import "bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 
 $mq-mobile-portrait		: 320px !default;
@@ -14,6 +14,31 @@ $mq-desktop				: 1382px !default;
     }
 }
 
+/* Font Face */
+@font-face {
+    font-family: 'Gilroy Regular';
+    src: url('./assets/fonts/Gilroy-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Gilroy Bold';
+    src: url('./assets/fonts/Gilroy-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Gilroy ExtraBold';
+    src: url('./assets/fonts/Gilroy-ExtraBold.ttf');
+}
+
+@keyframes cardAnimation {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
 
 input[type="text"]::-webkit-input-placeholder {
     color: #d5d7d9
@@ -52,10 +77,6 @@ input[type="text"]::-webkit-input-placeholder {
 
 .card-store small {
     display: block;
-}
-
-.btn-soft {
-    opacity: .65;
 }
 
 .btn-link {

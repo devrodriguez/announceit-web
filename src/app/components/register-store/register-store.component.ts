@@ -14,6 +14,7 @@ import { debounceTime, distinctUntilChanged, tap, switchMap, catchError } from '
 export class RegisterStoreComponent implements OnInit {
   storeData: Store = {} as Store;
   categories: Category[] = [] as Category[];
+  selectedCategory: Category = {} as Category;
   searching = false;
   searchFailed = false;
 
@@ -26,10 +27,13 @@ export class RegisterStoreComponent implements OnInit {
   }
 
   getCategories() {
-    this.storeService.getCategories().subscribe((res: Category[]) => {
-      this.categories = res;
-    }, err => {
-      console.log(err);
+    this.storeService.getCategories().subscribe({
+      next: (res: Category[]) => {
+        this.categories = res;
+      },
+      error: err => {
+        console.log(err);
+      }
     });
   }
 
@@ -47,15 +51,14 @@ export class RegisterStoreComponent implements OnInit {
   }
 
   register() {
-    this.storeService.createStore(this.storeData).subscribe(res => {
+    this.storeData.category = this.selectedCategory
+    this.storeService.createStore(this.storeData)
+    .then(res => {
       this.storeData = {} as Store;
-    }, err => {
-      console.log(err);
+    })
+    .catch(err => {
+      console.error(err)
     });
-  }
-
-  selectCategory(event: any) {
-    this.storeData.category = JSON.parse(event);
   }
 
   // findCoordinates() {

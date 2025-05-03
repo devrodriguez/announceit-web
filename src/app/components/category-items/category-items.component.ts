@@ -18,6 +18,7 @@ import { Category } from 'src/app/interfaces/category';
 })
 export class CategoryItemsComponent implements OnInit {
   @Output() selectCategoryEvt = new EventEmitter<string>();
+  categories: Category[] = [];
 
   faAppleAlt = faAppleAlt;
   faShoppingBasket = faShoppingBasket;
@@ -25,42 +26,6 @@ export class CategoryItemsComponent implements OnInit {
   faCut = faCut;
   faBreadSlice = faBreadSlice;
   faUtensils = faUtensils;
-
-  categories: Category[] = [];
-  /*
-  categories: Category[] = [
-    {
-      name: 'Frutas',
-      icon: faAppleAlt,
-      class: 'bg-success'
-    },
-    {
-      name: 'Mercado',
-      icon: faShoppingBasket,
-      class: 'bg-info'
-    },
-    {
-      name: 'Carne',
-      icon: faDrumstickBite,
-      class: 'bg-danger'
-    },
-    {
-      name: 'Belleza',
-      icon: faCut,
-      class: 'bg-primary'
-    },
-    {
-      name: 'Panaderia',
-      icon: faBreadSlice,
-      class: 'bg-warning'
-    },
-    {
-      name: 'Restaurante',
-      icon: faUtensils,
-      class: 'bg-secondary'
-    }
-  ];
-  */
 
   constructor(private categorySrv: CategoryService) { }
 

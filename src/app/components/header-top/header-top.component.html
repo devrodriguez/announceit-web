@@ -3,16 +3,9 @@
   <!-- Container wrapper -->
   <div class="container">
     <!-- Navbar brand -->
-    <a class="navbar-brand me-2" href="https://mdbgo.com/">
-      <img
-        src="assets/img/logo.png"
-        height="16"
-        alt="MDB Logo"
-        loading="lazy"
-        style="margin-top: -1px;"
-      />
+    <a class="navbar-brand me-2" href="/">
+      Multitienda
     </a>
-
     <!-- Toggle button -->
     <button
       class="navbar-toggler"
@@ -32,27 +25,37 @@
       <!-- Left links -->
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link" href="#">Dashboard</a>
         </li>
       </ul>
       <!-- Left links -->
       <div class="d-flex align-items-center">
-        <button type="button" class="btn btn-outline-success px-3 me-2 btn-soft" *ngIf="!loggedIn" type="button" (click)="openModal(mdLogin)">
-          <fa-icon [icon]="faUser"></fa-icon>
-          Ingresar
-        </button>
-        <button type="button" class="btn btn-outline-danger px-3 me-2 btn-soft" (click)="openPublicar(mdLogin, mdRegister)">
-          <fa-icon [icon]="faPlusCircle"></fa-icon>
-          Publicar
-        </button>
-        <button class="btn btn-outline-warning px-3 me-2 btn-soft" *ngIf="loggedIn" type="button" (click)="signOut()">
-          <fa-icon [icon]="faUser"></fa-icon>
-          Logout
-        </button>
-        <span *ngIf="loggedIn" class="ml-2 login-cont">
-          <img [src]="user.photoUrl" class="rounded-circle" style="height: 20px;" alt="">
-          <small class="ml-2">{{user.name}}</small>
-        </span>
+        <!-- Example split danger button -->
+        <div class="d-inline-block" ngbDropdown #myDrop="ngbDropdown">
+          <button
+            type="button"
+            class="btn btn-outline-primary me-2"
+            id="dropdownManual"
+            ngbDropdownAnchor
+            (focus)="myDrop.open()"
+          >
+            <i class="bi bi-person"></i>
+            {{user.email}}
+          </button>
+          <div ngbDropdownMenu aria-labelledby="dropdownManual">
+            <button ngbDropdownItem type="button" (click)="openPublicar(mdLogin, mdRegister)">
+              <i class="bi bi-plus-circle"></i>
+              Publicar
+            </button>
+            <button ngbDropdownItem type="button" class="btn btn-outline-primary px-3 me-2 btn-soft" *ngIf="!loggedIn" type="button" (click)="openModal(mdLogin)">
+              <i class="bi bi-box-arrow-in-right"></i>
+              Ingresar
+            </button>
+            <button ngbDropdownItem type="button" *ngIf="loggedIn" (click)="signOut()">
+              <i class="bi bi-box-arrow-left"></i>
+              Salir
+            </button>
+          </div>
+        </div>
       </div>
     </div>
     <!-- Collapsible wrapper -->

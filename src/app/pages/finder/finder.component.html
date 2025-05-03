@@ -11,9 +11,9 @@
         class="form-control big-input" 
         placeholder="Busca lo que necesites..." 
         [(ngModel)]="query" 
-        (keydown)="findByInput($event, storeItems)">
+        (keydown)="onSearchKeyDown($event)">
         <fa-icon [icon]="faSearch" class="input-search-icon"></fa-icon>
-        <select name="km" id="km" class="form-control big-select" [(ngModel)]="kmDist">
+        <select name="km" id="km" class="form-control big-select" [(ngModel)]="kmDist" *ngIf="false">
           <option value="1">1 Km</option>
           <option value="5">5 Km</option>
           <option value="10">10 Km</option>
@@ -26,10 +26,5 @@
     </div>
   </div>
   <div class="container mt-5">
-    <app-store-items #storeItems [stores]="stores" (touchEvent)="onTouchStoreCard($event)"></app-store-items>
+    <app-store-items [stores]="stores" (touchEvent)="onTouchStoreCard($event)"></app-store-items>
   </div>
-  <ng-template #mdStoreLobby let-modal>
-    <div class="modal-body">
-      <app-store-lobby></app-store-lobby>
-    </div>
-  </ng-template>

@@ -3,13 +3,14 @@ import { SocialUser } from '@abacritt/angularx-social-login';
 // Fontawsome
 import {
   faPlusCircle,
-  faUser
+  faUser,
+  faClose,
+  faSignOut
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService, AuthService as LocalAuthService } from '../../services/auth.service';
 
 // Bootstrap
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Customer } from 'src/app/interfaces/customer';
 
 @Component({
   selector: 'app-header-top',
@@ -23,6 +24,7 @@ export class HeaderTopComponent implements OnInit {
 
   faPlusCircle = faPlusCircle;
   faUser = faUser;
+  faSignOut = faSignOut;
 
   prevPublic = false;
   navOpen = false;
@@ -34,7 +36,17 @@ export class HeaderTopComponent implements OnInit {
     private authService: AuthService,
     private locAuthService: LocalAuthService,
     private modalService: NgbModal
-  ) { }
+  ) {
+    this.authService.authState.subscribe(user => {
+      console.log('user state from header component', user)
+      if(user) {
+        this.user.email = user.email
+        this.loggedIn = true
+      } else {
+        this.loggedIn = false
+      }
+    })
+   }
 
   ngOnInit(): void {
     sessionStorage.setItem('session', '{}')
@@ -59,6 +71,7 @@ export class HeaderTopComponent implements OnInit {
     this.authService.signOut();
     this.locAuthService.signOut();
     this.navOpen = false;
+    this.user = {} as SocialUser
   }
 
   customerLogged(evt: any) {
