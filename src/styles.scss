@@ -30,6 +30,16 @@ $mq-desktop				: 1382px !default;
     src: url('./assets/fonts/Gilroy-ExtraBold.ttf');
 }
 
+@keyframes cardAnimation {
+    0%{
+        opacity: 0;
+    }
+
+    100%{
+        opacity: 1;
+    }
+}
+
 input[type="text"]::-webkit-input-placeholder {
     color: #d5d7d9
 }

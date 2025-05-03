@@ -25,14 +25,14 @@ export class StoreService {
 
   getStores(): Observable<any> {
     const collRef = collection(this.firestore, 'stores')
-    return collectionData(collRef, {idField: 'id'}) 
+    return collectionData(collRef, { idField: 'id' }) 
   }
 
   getStoreByCategory(category: string): Observable<any> {
     const collRef = collection(this.firestore, 'stores')
     const q = query(collRef, where('category.name', '==', category))
 
-    return collectionData(q)
+    return collectionData(q, { idField: 'id' })
   }
 
   findStore(kmDist: string, lat: number, lon: number, q: string): Observable<any> {

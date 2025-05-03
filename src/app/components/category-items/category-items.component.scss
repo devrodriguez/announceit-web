@@ -1,5 +1,8 @@
 .category-item-container {
     text-align: center;
+    animation: cardAnimation ease 3s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
 }
 
 .category-item-container small {
