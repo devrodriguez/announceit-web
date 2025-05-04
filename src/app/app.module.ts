@@ -49,6 +49,7 @@ import { CreateProductComponent } from './components/create-product/create-produ
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage())
   ],
+  entryComponents: [CreateProductComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

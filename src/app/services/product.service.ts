@@ -13,6 +13,6 @@ export class ProductService {
 
   getProducts(storeId: string): Observable<any> {
     const collRef = collection(this.firestore, 'stores', storeId, 'products')
-    return collectionData(collRef)
+    return collectionData(collRef, { idField: 'id' })
   }
 }

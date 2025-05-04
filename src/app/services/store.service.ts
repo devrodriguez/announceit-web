@@ -1,6 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 
-import { DocumentReference, Firestore, addDoc, collection, collectionData, doc, getDoc, getDocs, query, where} from '@angular/fire/firestore';
+import { DocumentReference, Firestore, addDoc, collection, collectionData, doc, getDoc, getDocs, query, updateDoc, where} from '@angular/fire/firestore';
 
 import { Observable, of } from 'rxjs';
 import { Store } from '../interfaces/store';
@@ -48,5 +48,14 @@ export class StoreService {
   addProductToStore(storeID: string, data: Product) {
     const docRef = collection(this.firestore, 'stores', storeID, 'products')
     return addDoc(docRef, data)
+  }
+
+  updateProduct(storeID: string, productID: string, product: Product) {
+    if (!storeID) return new Error('Not provided storeID');
+    if (!productID) return new Error('Not provided productID');
+    if (!product) return new Error('Not provided product');
+
+    const docRef = doc(this.firestore, 'stores', storeID, 'products', productID)
+    return updateDoc(docRef, {...product})
   }
 }

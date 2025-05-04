@@ -5,7 +5,8 @@ import { Store } from 'src/app/interfaces/store';
 import { ProductService } from 'src/app/services/product.service';
 import { StoreService } from 'src/app/services/store.service';
 
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { CreateProductComponent } from 'src/app/components/create-product/create-product.component';
 
 @Component({
   selector: 'app-store-lobby',
@@ -16,6 +17,7 @@ export class StoreLobbyComponent implements OnInit {
   storeID: string = '';
   store: Store = {} as Store;
   products: Product[] = [] as Product[]
+  currentProduct?: Product = {} as Product
 
   constructor(
     private router: ActivatedRoute,
@@ -53,11 +55,14 @@ export class StoreLobbyComponent implements OnInit {
       })
   }
 
-  onProductCreated() {
-    this.modalService.dismissAll()
-  }
-
-  openModal(mdCreateProduct: TemplateRef<any>) {
-    this.modalService.open(mdCreateProduct)
+  openModal(product?: Product) {
+    const modalRef = this.modalService.open(CreateProductComponent)
+    modalRef.componentInstance.product = product
+    modalRef.componentInstance.storeID = this.storeID
+    modalRef.componentInstance.productCreated.subscribe({
+      next: (evt: string) => {
+        this.modalService.dismissAll()
+      }
+    })
   }
 }
