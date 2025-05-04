@@ -6,8 +6,6 @@ import {
 
 import { StoreService } from 'src/app/services/store.service';
 import { Store } from 'src/app/interfaces/store';
-import { StoreItemsComponent } from 'src/app/components/store-items/store-items.component';
-import { StoreLobbyComponent } from 'src/app/pages/store-lobby/store-lobby.component';
 import { Router } from '@angular/router';
 import { Category } from 'src/app/interfaces/category';
 

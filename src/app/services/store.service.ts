@@ -4,6 +4,7 @@ import { DocumentReference, Firestore, addDoc, collection, collectionData, doc, 
 
 import { Observable, of } from 'rxjs';
 import { Store } from '../interfaces/store';
+import { Product } from '../interfaces/product';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,10 @@ export class StoreService {
   getCategories(): Observable<any> {
     const collRef = collection(this.firestore, 'categories')
     return collectionData(collRef, {idField:'id'})
+  }
+
+  addProductToStore(storeID: string, data: Product) {
+    const docRef = collection(this.firestore, 'stores', storeID, 'products')
+    return addDoc(docRef, data)
   }
 }

@@ -11,8 +11,8 @@ export class ProductService {
 
   constructor() { }
 
-  getProducts(): Observable<any> {
-    const collRef = collection(this.firestore, 'products')
+  getProducts(storeId: string): Observable<any> {
+    const collRef = collection(this.firestore, 'stores', storeId, 'products')
     return collectionData(collRef)
   }
 }
