@@ -1,22 +1,31 @@
 <div class="modal-body">
-    <form [formGroup]="productFrm" (ngSubmit)="createProduct()">
+    <form [formGroup]="productFrm" class="needs-validation" (ngSubmit)="createProduct()" novalidate>
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="name" name="name" formControlName="name">
+            <div *ngIf="productFrm.get('name')?.hasError('required')" class="text-danger">
+                El campo nombre es requerido
+            </div>
         </div>
         <div class="mb-3">
             <label for="description" class="form-label">Descripción</label>
             <input type="text" class="form-control" id="description" name="description" formControlName="description">
+            <div *ngIf="productFrm.get('description')?.hasError('required')" class="text-danger">
+                El campo descripción es requerido
+            </div>
         </div>
         <div class="mb-3">
             <label for="price" class="form-label">Precio</label>
-            <input type="number" class="form-control" id="price" name="price"    formControlName="price">
+            <input type="number" class="form-control" id="price" name="price" formControlName="price">
+            <div *ngIf="productFrm.get('price')?.hasError('required')" class="text-danger">
+                El campo precio es requerido
+            </div>
         </div>
         <div class="mb-3">
             <label for="urlImages" class="form-label">Imagenes</label>
             <input type="file" class="form-control" id="urlImages" name="urlImages" multiple formControlName="urlImages">
         </div>
-        <button type="submit" class="btn btn-sm btn-primary me-2">Submit</button>
+        <button type="submit" class="btn btn-sm btn-primary me-2" *ngIf="productFrm.valid">Submit</button>
         <button type="button" class="btn btn-sm btn-secondary" (click)="closeModal()">Cancelar</button>
     </form>
 </div>

@@ -7,6 +7,7 @@ import { StoreService } from 'src/app/services/store.service';
 
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CreateProductComponent } from 'src/app/components/create-product/create-product.component';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-store-lobby',
@@ -18,13 +19,26 @@ export class StoreLobbyComponent implements OnInit {
   store: Store = {} as Store;
   products: Product[] = [] as Product[]
   currentProduct?: Product = {} as Product
+  public isAllowedEdit: boolean = false;
 
   constructor(
     private router: ActivatedRoute,
     private storeService: StoreService,
     private productService: ProductService,
+    private authService: AuthService,
     private modalService: NgbModal) {
-
+    this.authService.authState.subscribe({
+      next: user => {
+        if(user) {
+          this.isAllowedEdit = true
+        } else {
+          this.isAllowedEdit = false
+        }
+      },
+      error: error => {
+        console.error('error from create product component', error)
+      }
+    })
   }
 
   ngOnInit(): void {

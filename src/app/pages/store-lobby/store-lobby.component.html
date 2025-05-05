@@ -6,7 +6,7 @@
             <li class="breadcrumb-item active" aria-current="page">Tienda</li>
         </ol>
     </nav>
-    <button class="btn btn-success" (click)="openModal()">Agregar Producto</button>
+    <button class="btn btn-success" (click)="openModal()" *ngIf="isAllowedEdit">Agregar Producto</button>
     <h1 class="store-title">{{store.name}}</h1>
     <section>
         <div class="card mb-3" *ngFor="let product of products">
@@ -35,8 +35,8 @@
                         <h5 class="card-title">{{product.name}}</h5>
                         <p class="card-text">{{product.description}}</p>
                         <p class="card-text"><small class="text-muted">${{product.price}}</small></p>
-                        <button class="btn btn-sm btn-danger me-2">Eliminar</button>
-                        <button class="btn btn-sm btn-warning" (click)="openModal(product)">Editar</button>
+                        <button class="btn btn-sm btn-danger me-2"  *ngIf="isAllowedEdit">Eliminar</button>
+                        <button class="btn btn-sm btn-warning" (click)="openModal(product)" *ngIf="isAllowedEdit">Editar</button>
                     </div>
                 </div>
             </div>

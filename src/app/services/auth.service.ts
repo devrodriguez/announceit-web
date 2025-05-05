@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { Customer } from '../interfaces/customer';
 
-import { Auth, User, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from '@angular/fire/auth'
+import { Auth, User, onAuthStateChanged, signInWithEmailAndPassword, signOut } from '@angular/fire/auth'
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,7 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Product } from 'src/app/interfaces/product';
+import { AuthService } from 'src/app/services/auth.service';
 import { StoreService } from 'src/app/services/store.service';
 
 @Component({
@@ -18,7 +19,7 @@ export class CreateProductComponent {
 
   constructor(
     private readonly formBuilder: FormBuilder,
-    private readonly storeService: StoreService
+    private readonly storeService: StoreService,
   ) {
     
   }
